@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/menu.css">
+    <script type="text/javascript" src="portfolioPage.js"></script>
+
+</head>
+<body>
+<header class="header">
+    <div class="companyName">
+        <a href="index.html"><img src="./css/images/stock-logo-png-transparent.png"/></a>
+    </div>
+    <div id="menuwrap">
+        <div id="menu">
+            <ul>
+                <li>
+                    <a href="main.html">Main</a>
+                </li>
+                <li>
+                    <a href="portfolio.html">Portfolio</a>
+                </li>
+                <li>
+                    <a href="portal.html">Portal</a>
+                </li>
+                <li>
+                    <a href="makeMoney.html">Make Money</a>
+                </li>
+                <li>
+                    <a href="login.html">Login/Sign-up</a>
+                </li>
+            </ul>
+        </div><!--menu-->
+    </div><!--menuwrap-->
+</header>
+<div class="contentbody">
+    <div class="content">
+        <div class="divider"></div>
+        <div class="overflowcontent">
+            <!--content area-->
+            <div class="form">
+                <form  action="" method="POST" enctype="multipart/form-data" id="contactform">
+                    <input type="hidden" name="action" value="submit">
+                    Ticker:</br>
+                    <input name="ticker" type="name" value="" size="30" id="ticker"/></br></br>
+                    Owner:</br>
+                    <input name="owner" type="name" value="" size="30" id="owner"/></br></br>
+                    Relationship:</br>
+                    <input name="relationship" type="name" value="" size="30" id="relationship"/></br></br>
+                    Transaction:</br>
+                    <input name="transaction" type="name" value="" size="30" id="transaction"/></br></br>
+                    Cost:</br>
+                    <input name="cost" type="name" value="" size="30" id="cost"/></br></br>
+                    Shares:</br>
+                    <input name="shares" type="name" value="" size="30" id="shares"/></br></br>
+                    totalValue:</br>
+                    <input name="totalvalue" type="name" value="" size="30" id="totalvalue"/></br></br>
+                    Filing Date:</br>
+                    <input name="filingdate" type="name" value="" size="30" id="filingdate"/></br></br>
+                    <input type="submit" value="Send Message"/>
+                    </br></br>
+                </form>
+            </div><!--form-->
+
+            <button id="saveAllLatest">SaveAllLatest</button>
+
+
+            <div style="margin: 20px; height:600px">
+                <div id="stockresults"></div>
+                <div id="chart" style=""></div>
+                <div id="overlay">
+                    <div id="expanded-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

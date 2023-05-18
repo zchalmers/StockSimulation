@@ -1,0 +1,56 @@
+#menuwrap
+{
+    width: auto;
+    height: auto;
+    margin: 0 20px 0 0;
+    float: right;
+}
+#menu {
+    font-family: sans-serif;
+    height: auto;
+    font-size: 18px;
+    padding: 0;
+    margin: 30px 0 0 0;
+    *display: none;
+}
+#menuwrap
+{
+    width: auto;
+    height: auto;
+    margin: 0 20px 0 0;
+    float: right;
+}
+.header {
+
+    background-color: #1f2833;
+    color: var(--primary-color);
+    height: 100px;
+    background-image: url();
+    background-size: 35%;
+
+}
+.companyName img{
+    margin: 10px 30px 30px 30px;
+    max-width: 100px !important;
+    max-height: 100px !important;
+    float: left;
+}
+
+.divider{
+    border-top: 10px solid #bbb;
+    border-color: #45a29f;
+    color: #45a29f;
+}
+.contentbody{
+    background-color: #ccccff;
+    margin: 0px;
+}
+.content{
+    height:100%;
+    padding-bottom: 10px;
+    background: url("./images/background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}

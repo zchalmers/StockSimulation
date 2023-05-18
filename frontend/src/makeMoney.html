@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/menu.css">
+  <link rel="stylesheet" type="text/css" href="css/portalTable.css">
+  <link rel="stylesheet" type="text/css" href="css/makeMoney.css">
+  <script type="text/javascript" src="makeMoneyPage.js"></script>
+  <script src="https://code.jscharting.com/latest/jscharting.js"></script>
+
+</head>
+<body>
+<header class="header">
+  <div class="companyName">
+    <a href="index.html"><img src="./css/images/stock-logo-png-transparent.png"/></a>
+  </div>
+  <div id="menuwrap">
+    <div id="menu">
+      <ul>
+        <li>
+          <a href="main.html">Main</a>
+        </li>
+        <li>
+          <a href="portfolio.html">Portfolio</a>
+        </li>
+        <li>
+          <a href="portal.html">Portal</a>
+        </li>
+        <li>
+          <a href="makeMoney.html">Make Money</a>
+        </li>
+        <li>
+          <a href="login.html">Login/Sign-up</a>
+        </li>
+      </ul>
+    </div><!--menu-->
+  </div><!--menuwrap-->
+</header>
+<div class="contentbody">
+  <div class="content">
+    <div class="divider"></div>
+    <div class="overflowcontent">
+      <!--content area-->
+      <div>
+
+        <table id="portfolio-table" class="table">
+          <thead>
+          <tr>
+            <th>Ticker</th>
+            <th>Shares</th>
+            <th>Original Cost</th>
+            <th>Current Cost</th>
+            <th>Original Total Value</th>
+            <th>Current Total Value</th>
+            <th>Percent Change</th>
+            <th>Date Bought</th>
+          </tr>
+          </thead>
+          <tbody id="portfolio-table-body">
+          <tr>
+            <td colspan="8">Loading...</td>
+          </tr>
+          </tbody>
+        </table>
+      </div><!--form-->
+
+      <div style="margin: 20px; height:600px">
+        <div id="stockresults"></div>
+        <div id="chart" style=""></div>
+        <div id="overlay">
+          <div id="expanded-chart"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

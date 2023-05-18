@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/menu.css">
+  <link rel="stylesheet" type="text/css" href="css/portalTable.css">
+  <script type="text/javascript" src="portalPage.js"></script>
+
+</head>
+<body>
+<header class="header">
+  <div class="companyName">
+    <a href="index.html"><img src="./css/images/stock-logo-png-transparent.png"/></a>
+  </div>
+  <div id="menuwrap">
+    <div id="menu">
+      <ul>
+        <li>
+          <a href="main.html">Main</a>
+        </li>
+        <li>
+          <a href="portfolio.html">Portfolio</a>
+        </li>
+        <li>
+          <a href="portal.html">Portal</a>
+        </li>
+        <li>
+          <a href="makeMoney.html">Make Money</a>
+        </li>
+        <li>
+          <a href="login.html">Login/Sign-up</a>
+        </li>
+      </ul>
+    </div><!--menu-->
+  </div><!--menuwrap-->
+</header>
+<div class="contentbody">
+  <div class="content">
+    <div class="divider"></div>
+    <div class="overflowcontent">
+      <!--content area-->
+      <div>
+        <select id="select-data">
+          <option value="All">All</option>
+          <option value="Buys">Buys</option>
+          <option value="Sales">Sales</option>
+        </select>
+
+        <table id="data-table" class="table">
+          <thead>
+          <tr>
+            <th>Ticker</th>
+            <th>Owner</th>
+            <th>Relationship</th>
+            <th>Transaction</th>
+            <th>Cost</th>
+            <th>Shares</th>
+            <th>Total Value</th>
+            <th>Filing Date</th>
+          </tr>
+          </thead>
+          <tbody id="table-body">
+          <tr>
+            <td colspan="8">Loading...</td>
+          </tr>
+          </tbody>
+        </table>
+      </div><!--form-->
+
+      <div style="margin: 20px; height:600px">
+        <div id="stockresults"></div>
+        <div id="chart" style=""></div>
+        <div id="overlay">
+          <div id="expanded-chart"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
