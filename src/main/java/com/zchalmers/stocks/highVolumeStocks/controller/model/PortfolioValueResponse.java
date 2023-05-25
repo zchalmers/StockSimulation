@@ -9,14 +9,15 @@ import java.util.Map;
 public class PortfolioValueResponse {
 
     private Map<LocalDate, Double> valueOverTime;
-
+    private Map<LocalDate, Double> relativePerformanceOverTime;
     private Double totalValue;
 
     private List<PortfolioRecordResponse> recordList;
 
 
-    public PortfolioValueResponse(Map<LocalDate, Double> valueOverTime, Double totalValue, List<PortfolioRecordResponse> recordList) {
+    public PortfolioValueResponse(Map<LocalDate, Double> valueOverTime, Map<LocalDate, Double> relativePerformanceOverTime, Double totalValue, List<PortfolioRecordResponse> recordList) {
         this.valueOverTime = valueOverTime;
+        this.relativePerformanceOverTime = relativePerformanceOverTime;
         this.totalValue = totalValue;
         this.recordList = recordList;
     }
@@ -43,5 +44,13 @@ public class PortfolioValueResponse {
 
     public void setRecordList(List<PortfolioRecordResponse> recordList) {
         this.recordList = recordList;
+    }
+
+    public Map<LocalDate, Double> getRelativePerformanceOverTime() {
+        return relativePerformanceOverTime;
+    }
+
+    public void setRelativePerformanceOverTime(Map<LocalDate, Double> relativePerformanceOverTime) {
+        this.relativePerformanceOverTime = relativePerformanceOverTime;
     }
 }

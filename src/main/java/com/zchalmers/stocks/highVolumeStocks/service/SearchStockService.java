@@ -32,7 +32,7 @@ public class SearchStockService {
             StockResponse stockResponse = restTemplate.getForObject(url, StockResponse.class);
             StockResponseClean clean = StockConverter.responseToClean(stockResponse);
             cache.addToCache(StockConverter.cleanToCache(clean));
-            Thread.sleep(2000);
+            Thread.sleep(20000);
             return clean;
         }
     }

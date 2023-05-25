@@ -5,7 +5,7 @@ export default class MakeMoneyClient extends BaseClass {
 
     constructor(props = {}){
         super();
-        const methodsToBind = ['getPortfolioData'];
+        const methodsToBind = ['getPortfolioData', 'getStockData'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
         this.clientLoaded(axios);
@@ -20,6 +20,19 @@ export default class MakeMoneyClient extends BaseClass {
         if (this.props.hasOwnProperty("onReady")){
             this.props.onReady();
         }
+    }
+
+    async getStockData(ticker, errorCallback){
+        try {
+            const response = await this.client.get(`/makeMoney/stockData/${ticker}`);
+            console.log(response);
+            return response.data;
+        }
+        catch(error){
+            this.handleError("getStockData", error, errorCallback);
+
+        }
+
     }
 
     async getPortfolioData(errorCallback){

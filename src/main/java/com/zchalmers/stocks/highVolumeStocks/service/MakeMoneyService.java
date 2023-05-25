@@ -7,6 +7,7 @@ import com.zchalmers.stocks.highVolumeStocks.repositories.model.PortfolioRecord;
 import com.zchalmers.stocks.highVolumeStocks.repositories.model.StockRecord;
 import com.zchalmers.stocks.highVolumeStocks.service.model.StockElement;
 import com.zchalmers.stocks.highVolumeStocks.service.model.StockResponseClean;
+import jakarta.annotation.PostConstruct;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -23,10 +24,11 @@ public class MakeMoneyService {
     private PortfolioService portfolioService;
     private FinVizScraper scraper;
 
-    public MakeMoneyService(StockService stockService, SearchStockService searchService, PortfolioService portfolioService) {
+    public MakeMoneyService(StockService stockService, SearchStockService searchService, PortfolioService portfolioService, FinVizScraper scraper) {
         this.stockService = stockService;
         this.searchService = searchService;
         this.portfolioService = portfolioService;
+        this.scraper = scraper;
     }
 
     public void addToPortfolio(StockRecord record){
@@ -39,80 +41,78 @@ public class MakeMoneyService {
         portfolioService.addToPortfolio(portfolioRecord);
     }
 
-    @Scheduled(cron = "0 0 0 * * *")
+    @PostConstruct
     public void addAllToPortfolio() {
         List<StockElement> elementList = scraper.scrapeLatestBuy();
         stockService.saveAllList(elementList);
-
+        int limit = 0;
         for (StockElement e : elementList) {
+            if (limit == 30){
+                break;
+            }
             if (e.getTotalValue() > 1000000.00d) {
                 portfolioService.addToPortfolio(new PortfolioRecord(e.getTicker(),
                         Double.valueOf(e.getShares()), e.getCost(),
                         e.getTotalValue(), LocalDate.parse(e.getFilingDate().substring(0, 10))));
+                limit++;
             }
 
         }
+    }
 
-    }  
     public PortfolioValueResponse totalValueOverTime() throws InterruptedException {
         List<PortfolioRecord> recordList = portfolioService.getAllFromPortfolio();
         List<PortfolioRecordResponse> responseList = new ArrayList<>();
-//        List<Double> valueOverTime = new ArrayList<>();
-        Map<LocalDate, Double> valueOverTime = new HashMap<>();
-        // AMKE THIS A MAP SO I CAN STORE TOTAL VALUE OF PORTFOLIO WITH DATA AND VALUE
-        System.out.println("MAKEMONEYSERVICE PORTFOLIORECORDLIST:" + recordList.toString());
-        Double originalTotalValue = 0.00d;
-        for (PortfolioRecord e : recordList){
+        Map<LocalDate, Double> totalValueOverTime = new HashMap<>();
+
+        Double initialTotalValue = 0.00d;
+        Map<LocalDate, Double> percentageChangeByDay = new HashMap<>();
+
+        for (PortfolioRecord e : recordList) {
             StockResponseClean clean = searchService.getStocksByTicker(e.getTicker());
-//            System.out.println("TOTALVALUEOVERTIME STOCKRESPONSECLEAN: " + clean.toString());
             Map<LocalDate, Double> pricesOverTime = clean.getPricesOverTime();
             Double currentValue = 0.00d;
             Double currentCost = 0.00d;
-//            int index = 0;
-//            int size = pricesOverTime.entrySet().size();
-//            System.out.println("SIZE: " + size);
-            for (Map.Entry<LocalDate, Double> entry : pricesOverTime.entrySet()){
-//                index++;
 
-                if (entry.getKey().isBefore(e.getOriginalDateBought())){
+            for (Map.Entry<LocalDate, Double> entry : pricesOverTime.entrySet()) {
+                LocalDate key = entry.getKey();
+                Double value = entry.getValue();
+                if (key.isBefore(e.getOriginalDateBought())) {
                     continue;
-                }
+                } else {
+                    Double dayValue = e.getShares() * value;
+                    if (totalValueOverTime.containsKey(key)) {
+                        Double existingValue = totalValueOverTime.get(key);
+                        totalValueOverTime.put(key, existingValue + dayValue);
+                    } else {
+                        totalValueOverTime.put(key, dayValue);
+                    }
+                    System.out.println(percentageChangeByDay);
 
-                else {
-                    Double dayValue = e.getShares() * entry.getValue();
-//                    System.out.println("DAYVALUE: " + dayValue);
-                    if (valueOverTime.containsKey(entry.getKey())) {
-//                        System.out.println("ENTRYVALUE: " + entry.getValue() + "ENTRYKEY: " + entry.getKey());
-                        Double existingValue = valueOverTime.get(entry.getKey());
-                        valueOverTime.put(entry.getKey(), existingValue + dayValue);
+                    Double percentageChange = ((dayValue-  e.getOriginalValue())/e.getOriginalValue())*100;
+
+                    if (percentageChangeByDay.containsKey(key)){
+                        Double existingPercentage = percentageChangeByDay.get(key);
+                        percentageChangeByDay.put(key, existingPercentage + percentageChange);
                     }
                     else {
-                        valueOverTime.put(entry.getKey(), dayValue);
+                        percentageChangeByDay.put(key, percentageChange);
                     }
-                    }
-//                System.out.println(index + " INDEX");
-                if (entry.getKey().isEqual(e.getOriginalDateBought())){
-//                    System.out.println("IN IF LOOP THAT I WANT ");
+
+                }
+
+                if (entry.getKey().isEqual(e.getOriginalDateBought())) {
                     currentValue = e.getShares() * entry.getValue();
                     currentCost = entry.getValue();
-//                    System.out.println("CURRENT VALUE: " + currentValue);
                 }
-//                System.out.println(valueOverTime.toString());
+
 
             }
+
             responseList.add(StockConverter.PortfolioRecordToResponse(e, currentValue, currentCost));
-            originalTotalValue += e.getOriginalValue();
-//            Thread.sleep(2000);
+            initialTotalValue += e.getOriginalValue();
         }
-        // GET ORIGINAL VALUE AND ADD THEM ALL UP TO PUT IN MAP AS OWN KEY
-//        valueOverTime.put("originalValue", originalTotalValue);
-        System.out.println("TOTALVALUEOVERTIME MAP: " + valueOverTime.toString());
-
-        Map<LocalDate, Double> sortedMap = valueOverTime.entrySet().stream()
-                .sorted(Map.Entry.comparingByKey())
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
-
-        return new PortfolioValueResponse(sortedMap, originalTotalValue, responseList);
+        return new PortfolioValueResponse(totalValueOverTime, percentageChangeByDay, initialTotalValue, responseList);
     }
 
     public void checkForSales(List<PortfolioRecord> recordList){

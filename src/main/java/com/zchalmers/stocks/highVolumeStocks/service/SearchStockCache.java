@@ -30,5 +30,8 @@ public class SearchStockCache {
 
     }
 
+    public void deleteCache(){
+        searchStockRepository.deleteAll();
 
+    }
 }

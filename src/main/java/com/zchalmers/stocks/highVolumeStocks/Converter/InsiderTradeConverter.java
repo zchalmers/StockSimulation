@@ -35,7 +35,6 @@ public class InsiderTradeConverter {
         ZonedDateTime tempTime = ZonedDateTime.parse(cells.get(9).text(), formatter);
         String newDate = tempTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         trade.setFilingDate(newDate);
-        System.out.println(trade.toString());
         return trade;
     }
 
