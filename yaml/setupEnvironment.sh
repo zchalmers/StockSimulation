@@ -22,7 +22,7 @@ export GITHUB_GROUP_NAME=personal
 
 
 # Do not modify the rest of these unless you have been instructed to do so.
-export CAPSTONE_PROJECT_NAME=StockSimulation
+export CAPSTONE_PROJECT_NAME=stocksimulation
 export CAPSTONE_PIPELINE_STACK=$CAPSTONE_PROJECT_NAME-$GITHUB_GROUP_NAME
 export CAPSTONE_ARTIFACT_BUCKET=$CAPSTONE_PROJECT_NAME-$GITHUB_GROUP_NAME-artifacts
 export CAPSTONE_APPLICATION_STACK=$CAPSTONE_PROJECT_NAME-$GITHUB_GROUP_NAME-application

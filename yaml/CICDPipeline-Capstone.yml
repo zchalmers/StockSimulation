@@ -145,7 +145,7 @@ Resources:
       ServiceRole: !GetAtt BuildExecutionRole.Arn
       Source:
         Type: CODEPIPELINE
-        BuildSpec: buildScripts/buildspec.yml
+        BuildSpec: yaml/buildspec.yml
 
   AppPipelineWebhook:
     Type: AWS::CodePipeline::Webhook
