@@ -43,7 +43,7 @@ Resources:
             Effect: Allow
             Principal:
               Service: [codebuild.amazonaws.com]
-      Path: /  
+      Path: /
       Policies:
         - PolicyName: build-execution
           PolicyDocument:
