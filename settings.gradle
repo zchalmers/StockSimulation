@@ -1,1 +1,11 @@
+
+
+
+
+
+
 rootProject.name = 'highVolumeStocksSimulation'
+
+include(':Frontend')
+include(':Application')
+

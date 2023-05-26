@@ -33,7 +33,6 @@ module.exports = {
       {
         context: [
           '/stocks',
-          '/login',
           '/makeMoney'
         ],
         target: 'http://localhost:5001'
@@ -46,11 +45,6 @@ module.exports = {
       filename: 'main.html',
       inject: false
     }),
-    new HtmlWebpackPlugin({
-          template: './src/login.html',
-          filename: 'login.html',
-          inject: false
-        }),
     new HtmlWebpackPlugin({
               template: './src/portfolio.html',
               filename: 'portfolio.html',
