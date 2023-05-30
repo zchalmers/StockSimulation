@@ -2,12 +2,13 @@ package com.zchalmers.stocks.highVolumeStocks.service;
 
 import com.zchalmers.stocks.highVolumeStocks.repositories.PortfolioRepository;
 import com.zchalmers.stocks.highVolumeStocks.repositories.model.PortfolioRecord;
-import jakarta.annotation.PostConstruct;
+
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Service

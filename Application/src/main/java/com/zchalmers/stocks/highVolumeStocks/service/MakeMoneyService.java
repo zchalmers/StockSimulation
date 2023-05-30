@@ -7,10 +7,11 @@ import com.zchalmers.stocks.highVolumeStocks.repositories.model.PortfolioRecord;
 import com.zchalmers.stocks.highVolumeStocks.repositories.model.StockRecord;
 import com.zchalmers.stocks.highVolumeStocks.service.model.StockElement;
 import com.zchalmers.stocks.highVolumeStocks.service.model.StockResponseClean;
-import jakarta.annotation.PostConstruct;
+
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;

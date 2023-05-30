@@ -4,6 +4,8 @@ import com.zchalmers.stocks.highVolumeStocks.Converter.InsiderTradeConverter;
 import com.zchalmers.stocks.highVolumeStocks.repositories.model.StockRecord;
 import com.zchalmers.stocks.highVolumeStocks.repositories.StockRepository;
 import com.zchalmers.stocks.highVolumeStocks.service.FinVizScraper;
+
+
 import com.zchalmers.stocks.highVolumeStocks.service.StockService;
 import com.zchalmers.stocks.highVolumeStocks.service.model.StockElement;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +18,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
-import java.util.List;
+
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

@@ -1,12 +1,12 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.1.0'
+    id 'org.springframework.boot' version '2.6.3'
     id 'io.spring.dependency-management' version '1.1.0'
 }
 
 group = 'com.zchalmers.stocks'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+sourceCompatibility = '11'
 
 configurations {
     compileOnly {
@@ -23,7 +23,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-data-rest'
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-gradle-plugin
-    implementation group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: '3.1.0'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: '2.6.3'
 //	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 //	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 //	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.3.3.RELEASE'
@@ -32,7 +32,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web-services'
 //	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'com.mysql:mysql-connector-j'
+    implementation group: 'com.mysql', name: 'mysql-connector-j', version: '8.0.33'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 //	testImplementation 'org.springframework.security:spring-security-test'
@@ -54,8 +54,8 @@ task buildZip(type: Zip) {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 task copyFrontend(type: Copy) {

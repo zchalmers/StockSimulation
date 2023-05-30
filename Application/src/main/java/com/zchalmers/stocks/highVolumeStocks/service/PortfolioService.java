@@ -4,7 +4,7 @@ package com.zchalmers.stocks.highVolumeStocks.service;
 import com.zchalmers.stocks.highVolumeStocks.repositories.PortfolioRepository;
 import com.zchalmers.stocks.highVolumeStocks.repositories.model.PortfolioRecord;
 import com.zchalmers.stocks.highVolumeStocks.repositories.model.StockRecord;
-import jakarta.persistence.Table;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
