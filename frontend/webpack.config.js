@@ -9,7 +9,6 @@ module.exports = {
   },
   entry: {
     mainPage: path.resolve(__dirname, 'src', 'pages', 'mainPage.js'),
-    loginPage: path.resolve(__dirname, 'src', 'pages', 'loginPage.js'),
     portfolioPage: path.resolve(__dirname, 'src', 'pages', 'portfolioPage.js'),
     portalPage: path.resolve(__dirname, 'src', 'pages', 'portalPage.js'),
     makeMoneyPage: path.resolve(__dirname, 'src', 'pages', 'makeMoneyPage.js'),
