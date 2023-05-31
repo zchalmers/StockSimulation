@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "1.0.0",
   "description": "Frontend for high volume stocks",
-  "main": "index.js",
+  "main": "mainPage.js",
   "npm-pretty-much": {
     "consumeLibCommonJs": true,
     "runTest": "never"
